@@ -1,0 +1,6 @@
+Group project which involves the creation of a Sudoku game in Java.
+Features:
+* 3 game modes: Classic sudoku, Killer sudoku, Duidoku
+* PvP or PvE Duidoku
+* User management with statistic tracking.
+* Wordoku (sudoku using letters instead of numbers)

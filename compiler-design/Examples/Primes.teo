@@ -1,0 +1,20 @@
+mainclass Fibonacci {
+    public static void main ( ){
+        int i;
+        for(i=1;i<20;i = i +1){
+            int j,k;
+            j = 0;
+            for(k=2;k<i;k=k+1){
+                if(i-(k*(i/k))==0){
+                    j=1;
+                }
+            }
+            println(i);
+            if(j==1){
+                println(0);
+            }else{
+                println(1);
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+An implementation of the CRC error detection algorithm in C++, along with multi-threaded code to benchmark its effectiveness in detecting errors.

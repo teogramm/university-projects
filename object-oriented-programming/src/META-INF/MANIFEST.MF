@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Main-Class: Main
+Class-Path: gson-2.8.6.jar junit-jupiter-api-5.5.2.jar apiguardian-api-1
+ .1.0.jar opentest4j-1.2.0.jar junit-platform-commons-1.5.2.jar junit-ju
+ piter-5.4.2.jar junit-jupiter-api-5.4.2.jar apiguardian-api-1.0.0.jar o
+ pentest4j-1.1.1.jar junit-platform-commons-1.4.2.jar junit-jupiter-para
+ ms-5.4.2.jar junit-jupiter-engine-5.4.2.jar junit-platform-engine-1.4.2
+ .jar
+

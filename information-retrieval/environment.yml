@@ -1,0 +1,55 @@
+name: information-retrieval
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=1_gnu
+  - blas=1.0=openblas
+  - ca-certificates=2021.10.8=ha878542_0
+  - certifi=2021.10.8=py39hf3d152e_1
+  - click=8.0.3=pyhd3eb1b0_0
+  - colorama=0.4.4=pyhd3eb1b0_0
+  - joblib=1.1.0=pyhd3eb1b0_0
+  - ld_impl_linux-64=2.35.1=h7274673_9
+  - libblas=3.9.0=11_linux64_openblas
+  - libcblas=3.9.0=11_linux64_openblas
+  - libffi=3.3=he6710b0_2
+  - libgcc-ng=11.2.0=h1d223b6_11
+  - libgfortran-ng=9.3.0=ha5ec8a7_17
+  - libgfortran5=9.3.0=ha5ec8a7_17
+  - libgomp=11.2.0=h1d223b6_11
+  - liblapack=3.9.0=11_linux64_openblas
+  - libopenblas=0.3.17=pthreads_h8fe5266_1
+  - libstdcxx-ng=11.2.0=he4da1e4_11
+  - multi_rake=0.0.2=pyhd8ed1ab_0
+  - ncurses=6.3=h7f8727e_2
+  - nltk=3.6.5=pyhd3eb1b0_0
+  - nltk_data=2019.07.04=ha770c72_2
+  - numpy=1.21.2=py39hd8d4704_0
+  - numpy-base=1.21.2=py39h2b8c604_0
+  - openssl=1.1.1l=h7f98852_0
+  - pip=21.2.4=py39h06a4308_0
+  - pycld2=0.41=py39h1a9c180_0
+  - pyrsistent=0.18.0=py39h3811e60_0
+  - python=3.9.7=h12debd9_1
+  - python_abi=3.9=2_cp39
+  - rake_nltk=1.0.6=pyhd8ed1ab_0
+  - readline=8.1=h27cfd23_0
+  - regex=2021.8.3=py39h7f8727e_0
+  - scikit-learn=1.0.1=py39h51133e4_0
+  - scipy=1.5.3=py39hee8e79c_0
+  - setuptools=58.0.4=py39h06a4308_0
+  - sqlite=3.36.0=hc218d9a_0
+  - textblob=0.15.3=py_0
+  - threadpoolctl=2.2.0=pyh0d69192_0
+  - tk=8.6.11=h1ccaba5_0
+  - tqdm=4.62.3=pyhd3eb1b0_1
+  - tzdata=2021e=hda174b7_0
+  - wheel=0.37.0=pyhd3eb1b0_1
+  - xz=5.2.5=h7b6447c_0
+  - zlib=1.2.11=h7b6447c_3
+  - pip:
+    - future==0.18.2
+    - pyyaml==6.0
+prefix: /home/theodore/.conda/envs/information-retrieval

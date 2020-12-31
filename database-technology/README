@@ -1,0 +1,5 @@
+Project for the Database Technology course. It consists of two parts:
+* Creating a custom format for storing n-dimensional points on disk.
+* Creating an R-Tree for indexing the points in the database.
+Additionally, algorithms for nearest neighbour and range search (find all
+points in the specified rectangular area) were implemented, using the R-Tree.

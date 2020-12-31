@@ -1,0 +1,3 @@
+Ex1: Comparison of the Lagrange, splines and least square methods for apprixmating the sin(x) function.
+Ex6: Implementation of the trapezoid and Simpson methods for approximating integrals.
+Ex7: Prediction of stock prices with the least squares method using polynomials of varying degrees.

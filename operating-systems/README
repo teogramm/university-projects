@@ -1,0 +1,3 @@
+Group project involving the implementation of a CPU and CPU scheduling and Memory allocation algorithms in Java.
+CPU Scheduling: FCFS, SJF, Round Robin
+Memory Allocation: Best Fit, Worst Fit, First Fit, Next Fit

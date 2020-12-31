@@ -1,0 +1,12 @@
+mainclass Fibonacci {
+public static void main ( )
+{
+int first, second, i, tmp;
+first=3;
+second=4;
+i=1;
+tmp=2;
+i=(i+tmp)*(first+second)*first+tmp+i+tmp/tmp+i+i;
+println(i);
+}
+}

@@ -1,0 +1,10 @@
+The backend for a search engine on the proceedings of the Greek parliament.
+Features:
+* Stemming, tokenization, stopword removal.
+* Inverted index for searching the contents of speeches.
+* Keyword extraction from speeches.
+* Finding similarity between two speeches, two speakers or finding the
+  speech pairs with the greatest similarity.
+* Search using Latent Semantic Analysis.
+* A model which attempts to predict the party of the speaker, when given the contents of
+  a speech.

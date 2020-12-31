@@ -1,0 +1,9 @@
+mainclass Fibonacci {
+public static void main ( )
+{
+float i;
+for(i=-1;i>-2;i=i-0.1){
+println(i);
+}
+}
+}

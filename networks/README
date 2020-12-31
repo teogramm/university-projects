@@ -1,0 +1,7 @@
+Custom email system server and GUI client which support:
+* Account management (login and registration).
+* Sending and receiving emails.
+* Displaying the contents of a user's mailbox (after they log in).
+* Deleting emails from a mailbox.
+
+The project is implemented in Java. The GUI uses the JavaFX library.

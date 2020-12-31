@@ -1,0 +1,314 @@
+; Wed Dec 01 18:22:53 EET 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot pH
+		(type FLOAT)
+		(range 0.0 14.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot sideEffects
+;+		(comment "Possible side effects of exposure to this chemical.")
+		(type SYMBOL)
+		(allowed-values burnSkin asphyxiation)
+		(create-accessor read-write))
+	(single-slot manholeName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot formula
+;+		(comment "The condensed formula of the chemical.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ph
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot radioactive
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot smell
+		(type SYMBOL)
+		(allowed-values none choking vinegar)
+		(default none)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot spectoscopyElement
+;+		(comment "If this element is detected in a spectoscropy, then this chemical is present in the spectoscropy.")
+		(type INSTANCE)
+;+		(allowed-classes Element)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot output
+;+		(comment "The manholes that this factory or manhole output their chemicals to")
+		(type INSTANCE)
+;+		(allowed-classes Manhole)
+;+		(cardinality 0 1)
+;+		(inverse-slot inputs)
+		(create-accessor read-write))
+	(single-slot specificGravity
+		(type FLOAT)
+		(range 0.9 1.1)
+		(default 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot colour
+		(type SYMBOL)
+		(allowed-values none white red)
+		(default none)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot containsChemical
+		(type INSTANCE)
+;+		(allowed-classes Chemical)
+		(create-accessor read-write))
+	(multislot chemicalName
+;+		(comment "Common name of the chemical. A chemical may have multiple names, or in different languages.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot elementSymbol
+;+		(comment "The symbol of the element in the periodic table.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot facilityName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot elementName
+;+		(comment "Full name of the element.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot inputs
+;+		(comment "Manhole of storage facility that pours chemicals into this manhole")
+		(type INSTANCE)
+;+		(allowed-classes Manhole StorageFacility)
+;+		(inverse-slot output)
+		(create-accessor read-write))
+	(single-slot soluble
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Chemical "A chemical compound"
+	(is-a USER)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 0.0 14.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot smell
+		(type SYMBOL)
+		(allowed-values none choking vinegar)
+		(default none)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specificGravity
+		(type FLOAT)
+		(range 0.9 1.1)
+		(default 1.0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot sideEffects
+;+		(comment "Possible side effects of exposure to this chemical.")
+		(type SYMBOL)
+		(allowed-values burnSkin asphyxiation)
+		(create-accessor read-write))
+	(single-slot spectoscopyElement
+;+		(comment "If this element is detected in a spectoscropy, then this chemical is present in the spectoscropy.")
+		(type INSTANCE)
+;+		(allowed-classes Element)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot colour
+		(type SYMBOL)
+		(allowed-values none white red)
+		(default none)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot chemicalName
+;+		(comment "Common name of the chemical. A chemical may have multiple names, or in different languages.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot radioactive
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot formula
+;+		(comment "The condensed formula of the chemical.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot soluble
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Acid
+	(is-a Chemical)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 0.0 6.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot soluble
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(value TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass StrongAcid
+	(is-a Acid)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 0.0 3.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WeakAcid
+	(is-a Acid)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 3.0 6.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Base
+	(is-a Chemical)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 8.0 14.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot soluble
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(value TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass StrongBase
+	(is-a Base)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 11.0 14.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass WeakBase
+	(is-a Base)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 8.0 11.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Oil
+	(is-a Chemical)
+	(role concrete)
+	(single-slot pH
+		(type FLOAT)
+		(range 6.0 8.0)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot soluble
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(value FALSE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Element "A chemical element"
+	(is-a USER)
+	(role concrete)
+	(single-slot elementName
+;+		(comment "Full name of the element.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot elementSymbol
+;+		(comment "The symbol of the element in the periodic table.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass StorageFacility
+	(is-a USER)
+	(role concrete)
+	(multislot containsChemical
+		(type INSTANCE)
+;+		(allowed-classes Chemical)
+		(create-accessor read-write))
+	(single-slot output
+;+		(comment "The manholes that this factory or manhole output their chemicals to")
+		(type INSTANCE)
+;+		(allowed-classes Manhole)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot facilityName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Manhole
+	(is-a USER)
+	(role concrete)
+	(single-slot manholeName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot output
+;+		(comment "The manholes that this factory or manhole output their chemicals to")
+		(type INSTANCE)
+;+		(allowed-classes Manhole)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot inputs
+;+		(comment "Manhole of storage facility that pours chemicals into this manhole")
+		(type INSTANCE)
+;+		(allowed-classes Manhole StorageFacility)
+		(create-accessor read-write)))
+
+(defclass FinalManhole "Manhole that does not output anywhere"
+	(is-a Manhole)
+	(role concrete)
+	(single-slot output
+;+		(comment "The manholes that this factory or manhole output their chemicals to")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 0)
+		(create-accessor read-write)))
+
+(defclass IntermediateManhole "Manhole must have at least one input and exactly one output"
+	(is-a Manhole)
+	(role concrete)
+	(single-slot output
+;+		(comment "The manholes that this factory or manhole output their chemicals to")
+		(type INSTANCE)
+;+		(allowed-classes Manhole)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

@@ -1,0 +1,8 @@
+mainclass Fibonacci {
+public static void main ( )
+{
+int i;
+j=0.5;
+println(j);
+}
+}

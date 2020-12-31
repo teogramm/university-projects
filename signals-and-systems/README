@@ -1,0 +1,4 @@
+C++ project involving:
+* Multi-threaded implementation of the convolution operation.
+* Calculating the convolution between two given 32-bit PCM encoded WAV files.
+* Calculating the convolution between a given song and randomly generated white noise.

@@ -1,0 +1,200 @@
+[
+    {
+      "sum":6,
+      "colour": "red",
+      "xvalues": [0,1],
+      "yvalues": [0,0]
+    },
+    {
+      "sum":10,
+      "colour": "blue",
+      "xvalues": [0,0,0],
+      "yvalues": [1,2,3]
+    },
+    {
+      "sum":7,
+      "colour": "red",
+      "xvalues": [0,1],
+      "yvalues": [4,4]
+    },
+    {
+      "sum":24,
+      "colour": "blue",
+      "xvalues": [0,0,0],
+      "yvalues": [5,6,7]
+    },
+    {
+      "sum":13,
+      "colour": "red",
+      "xvalues": [0,1],
+      "yvalues": [8,8]
+    },
+    {
+      "sum":15,
+      "colour": "green",
+      "xvalues": [1,2],
+      "yvalues": [1,1]
+    },
+    {
+      "sum":7,
+      "colour": "pink",
+      "xvalues": [1,1],
+      "yvalues": [2,3]
+    },
+    {
+      "sum":9,
+      "colour": "green",
+      "xvalues": [1,1],
+      "yvalues": [5,6]
+    },
+    {
+      "sum":11,
+      "colour": "pink",
+      "xvalues": [1,2],
+      "yvalues": [7,7]
+    },
+    {
+      "sum":8,
+      "colour": "blue",
+      "xvalues": [2,3],
+      "yvalues": [0,0]
+    },
+    {
+      "sum":17,
+      "colour": "red",
+      "xvalues": [2,2],
+      "yvalues": [2,3]
+    },
+    {
+      "sum":12,
+      "colour": "blue",
+      "xvalues": [2,3,3,3],
+      "yvalues": [4,3,4,5]
+    },
+    {
+      "sum":9,
+      "colour": "red",
+      "xvalues": [2,2],
+      "yvalues": [5,6]
+    },
+    {
+      "sum":8,
+      "colour": "blue",
+      "xvalues": [2,3],
+      "yvalues": [8,8]
+    },
+    {
+      "sum":7,
+      "colour": "pink",
+      "xvalues": [3,3],
+      "yvalues": [1,2]
+    },
+    {
+      "sum":17,
+      "colour": "green",
+      "xvalues": [3,3],
+      "yvalues": [6,7]
+    },
+    {
+      "sum":19,
+      "colour": "red",
+      "xvalues": [4,5,5],
+      "yvalues": [0,0,1]
+    },
+    {
+      "sum":8,
+      "colour": "blue",
+      "xvalues": [4,4],
+      "yvalues": [1,2]
+    },
+    {
+      "sum":23,
+      "colour": "red",
+      "xvalues": [4,4,4,5],
+      "yvalues": [3,4,5,4]
+    },
+    {
+      "sum":7,
+      "colour": "blue",
+      "xvalues": [4,4],
+      "yvalues": [6,7]
+    },
+    {
+      "sum":13,
+      "colour": "red",
+      "xvalues": [4,5,5],
+      "yvalues": [8,7,8]
+    },
+    {
+      "sum":11,
+      "colour": "green",
+      "xvalues": [5,5],
+      "yvalues": [2,3]
+    },
+    {
+      "sum":9,
+      "colour": "green",
+      "xvalues": [5,5],
+      "yvalues": [5,6]
+    },
+    {
+      "sum":14,
+      "colour": "blue",
+      "xvalues": [6,7,8],
+      "yvalues": [0,0,0]
+    },
+    {
+      "sum":15,
+      "colour": "blue",
+      "xvalues": [6,7],
+      "yvalues": [1,1]
+    },
+    {
+      "sum":26,
+      "colour": "blue",
+      "xvalues": [6,6,6,6,6],
+      "yvalues": [2,3,4,5,6]
+    },
+    {
+      "sum":8,
+      "colour": "green",
+      "xvalues": [6,7],
+      "yvalues": [7,7]
+    },
+    {
+      "sum":15,
+      "colour": "blue",
+      "xvalues": [6,7,8],
+      "yvalues": [8,8,8]
+    },
+    {
+      "sum":10,
+      "colour": "red",
+      "xvalues": [7,7],
+      "yvalues": [2,3]
+    },
+    {
+      "sum":14,
+      "colour": "green",
+      "xvalues": [7,8],
+      "yvalues": [4,4]
+    },
+    {
+      "sum":5,
+      "colour": "red",
+      "xvalues": [7,7],
+      "yvalues": [5,6]
+    },
+    {
+      "sum":15,
+      "colour": "pink",
+      "xvalues": [8,8,8],
+      "yvalues": [1,2,3]
+    },
+    {
+      "sum":13,
+      "colour": "pink",
+      "xvalues": [8,8,8],
+      "yvalues": [5,6,7]
+    }
+]

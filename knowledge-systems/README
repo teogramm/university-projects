@@ -1,0 +1,5 @@
+Project for the Knowledge Systems course, involving tracing the location of contamination in
+water. It consists of two parts:
+* Representation of the static knowledge of the problem (monitoring station locations, pipe arrangement,
+  water sources). Performed using Protege (.pins,.pont,.pprj files).
+* CLIPS code to trace the source of the contamination based on different measurements (.clp files).

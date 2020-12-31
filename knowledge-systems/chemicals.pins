@@ -1,0 +1,150 @@
+; Wed Dec 01 18:22:53 EET 2021
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([chemicals_Class10] of  IntermediateManhole
+
+	(inputs [chemicals_Class38])
+	(manholeName "Manhole 4")
+	(output [chemicals_Class16]))
+
+([chemicals_Class10028] of  FinalManhole
+
+	(inputs
+		[chemicals_Class18]
+		[chemicals_Class19])
+	(manholeName "Control Center"))
+
+([chemicals_Class11] of  IntermediateManhole
+
+	(inputs [chemicals_Class37])
+	(manholeName "Manhole 5")
+	(output [chemicals_Class16]))
+
+([chemicals_Class12] of  IntermediateManhole
+
+	(inputs [chemicals_Class35])
+	(manholeName "Manhole 7")
+	(output [chemicals_Class17]))
+
+([chemicals_Class13] of  IntermediateManhole
+
+	(inputs [chemicals_Class36])
+	(manholeName "Manhole 6")
+	(output [chemicals_Class17]))
+
+([chemicals_Class14] of  IntermediateManhole
+
+	(inputs [chemicals_Class21])
+	(manholeName "Manhole 8")
+	(output [chemicals_Class19]))
+
+([chemicals_Class15] of  IntermediateManhole
+
+	(inputs
+		[chemicals_Class7]
+		[chemicals_Class8]
+		[chemicals_Class9])
+	(manholeName "Manhole 9")
+	(output [chemicals_Class18]))
+
+([chemicals_Class16] of  IntermediateManhole
+
+	(inputs
+		[chemicals_Class10]
+		[chemicals_Class11])
+	(manholeName "Manhole 10")
+	(output [chemicals_Class18]))
+
+([chemicals_Class17] of  IntermediateManhole
+
+	(inputs
+		[chemicals_Class13]
+		[chemicals_Class12])
+	(manholeName "Manhole 11")
+	(output [chemicals_Class19]))
+
+([chemicals_Class18] of  IntermediateManhole
+
+	(inputs
+		[chemicals_Class15]
+		[chemicals_Class16])
+	(manholeName "Manhole 12")
+	(output [chemicals_Class10028]))
+
+([chemicals_Class19] of  IntermediateManhole
+
+	(inputs
+		[chemicals_Class14]
+		[chemicals_Class17])
+	(manholeName "Manhole 13")
+	(output [chemicals_Class10028]))
+
+([chemicals_Class21] of  StorageFacility
+
+	(facilityName "Apothiki 8")
+	(output [chemicals_Class14]))
+
+([chemicals_Class23] of  Element
+
+	(elementName "Sulphur")
+	(elementSymbol "S"))
+
+([chemicals_Class27] of  Element
+
+	(elementName "Carbon")
+	(elementSymbol "C"))
+
+([chemicals_Class34] of  StorageFacility
+
+	(facilityName "Apothiki 1")
+	(output [chemicals_Class7]))
+
+([chemicals_Class35] of  StorageFacility
+
+	(facilityName "Apothiki 7")
+	(output [chemicals_Class12]))
+
+([chemicals_Class36] of  StorageFacility
+
+	(facilityName "Apothiki 6")
+	(output [chemicals_Class13]))
+
+([chemicals_Class37] of  StorageFacility
+
+	(facilityName "Apothiki 5")
+	(output [chemicals_Class11]))
+
+([chemicals_Class38] of  StorageFacility
+
+	(facilityName "Apothiki 4")
+	(output [chemicals_Class10]))
+
+([chemicals_Class39] of  StorageFacility
+
+	(facilityName "Apothiki 3")
+	(output [chemicals_Class9]))
+
+([chemicals_Class40] of  StorageFacility
+
+	(facilityName "Apothiki 2")
+	(output [chemicals_Class8]))
+
+([chemicals_Class7] of  IntermediateManhole
+
+	(inputs [chemicals_Class34])
+	(manholeName "Manhole 1")
+	(output [chemicals_Class15]))
+
+([chemicals_Class8] of  IntermediateManhole
+
+	(inputs [chemicals_Class40])
+	(manholeName "Manhole 2")
+	(output [chemicals_Class15]))
+
+([chemicals_Class9] of  IntermediateManhole
+
+	(inputs [chemicals_Class39])
+	(manholeName "Manhole 3")
+	(output [chemicals_Class15]))

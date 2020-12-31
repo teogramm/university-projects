@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="AiProj1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib64\;CMake Files\..\..\..\..\usr\lib64\cmake\;CMake Files\..\..\..\..\usr\lib64\cmake\Boost-1.72.0\;CMake Files\..\..\..\..\usr\lib64\cmake\boost_headers-1.72.0\;CMake Files\..\..\..\..\usr\lib64\cmake\boost_filesystem-1.72.0\;CMake Files\..\..\..\..\usr\lib64\cmake\boost_system-1.72.0\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/theodore/Development/AiProj1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/theodore/Development/AiProj1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="AiProj1">
+				<Option output="/home/theodore/Development/AiProj1/bin/AiProj1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/theodore/Development/AiProj1/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_FILESYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add directory="/home/theodore/Development/AiProj1/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 AiProj1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="AiProj1/fast">
+				<Option output="/home/theodore/Development/AiProj1/bin/AiProj1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/theodore/Development/AiProj1/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_FILESYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add directory="/home/theodore/Development/AiProj1/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/../../../../include/c++/9.3.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.3.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 AiProj1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/theodore/Development/AiProj1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/theodore/Development/AiProj1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/theodore/Development/AiProj1/main.cpp">
+			<Option target="AiProj1"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/src/moveTypes.cpp">
+			<Option target="AiProj1"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/src/orchestrator.cpp">
+			<Option target="AiProj1"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/src/puzzleBoard.cpp">
+			<Option target="AiProj1"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/BoostDetectToolset-1.72.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/Boost-1.72.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\Boost-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/Boost-1.72.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\Boost-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_headers-1.72.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_headers-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_headers-1.72.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_headers-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_filesystem-1.72.0/boost_filesystem-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_filesystem-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_filesystem-1.72.0/boost_filesystem-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_filesystem-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_filesystem-1.72.0/libboost_filesystem-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_filesystem-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_filesystem-1.72.0/libboost_filesystem-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_filesystem-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_system-1.72.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_system-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_system-1.72.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_system-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_system-1.72.0/libboost_system-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_system-1.72.0\"/>
+		</Unit>
+		<Unit filename="/home/theodore/Development/AiProj1/../../../../usr/lib64/cmake/boost_system-1.72.0/libboost_system-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\boost_system-1.72.0\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

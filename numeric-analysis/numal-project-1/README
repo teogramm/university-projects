@@ -1,0 +1,6 @@
+Various exercises in numeric analysis.
+
+Ex1: Implementations of the bisection, Newton-Raphson and secant methods for finding funtion roots in MATLAB.
+Ex2: Modified implementations of the same methods as Ex1.
+Ex3: Methods for solving linear systems: Cholesky Decomposition and Gauss-Seidel method.
+Ex4: Finding the largest eigenvalues for various matrices by using the power iteration method.

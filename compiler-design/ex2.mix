@@ -1,0 +1,134 @@
+           ORIG 1 
+TERM       EQU 18 
+           ORIG 4    
+TEMP       CON 0 
+TEMPF      CON 0 
+TOP        CON 0 
+STACK      ORIG *+50 
+LINE       ORIG *+24 
+BEGIN      NOP 
+           ENTA 0 
+           STA 1 
+           ENTA 0 
+           STA 2 
+           STA 3 
+           ENTA 3 
+           STA 1 
+           ENTA 22 
+           ENTX 10 
+           STX TEMPF 
+           FDIV TEMPF 
+           STA 2 
+           LDA 2 
+           LD5 TOP 
+           STA STACK,5 
+           INC5 1 
+           ST5 TOP 
+           ENTA 20 
+           ENTX 10 
+           STX TEMPF 
+           FDIV TEMPF 
+           STA TEMP 
+           LD5 TOP 
+           DEC5 1 
+           LDA STACK,5 
+           ST5 TOP 
+           FADD TEMP 
+           JOV OVERFLOWEX 
+           STA 3 
+           LDA 1 
+           ENTX 5 
+           STX TEMP 
+           CMPA TEMP 
+           JGE *+43 
+           LDA 3 
+           STA TEMP 
+           ENTA 1000 
+           STA TEMPF 
+           ENTA 499 
+           FDIV TEMPF 
+           STA TEMPF 
+           LDA TEMP 
+           JAN *+3 
+           FSUB TEMPF 
+           JMP *+2 
+           FADD TEMPF 
+           FIX 
+           JANN *+3 
+           ENT1 45 
+           ST1 LINE 
+           STA TEMPF 
+           CHAR 
+           STX LINE+1 
+           LDA TEMPF 
+           FLOT 
+           STA TEMPF 
+           ENTA 40 
+           SLA 4 
+           STA LINE+2 
+           LDA TEMP 
+           FSUB TEMPF 
+           STA TEMPF 
+           ENTA 100 
+           STA TEMP 
+           MUL TEMP 
+           SLAX 5 
+           FLOT 
+           FMUL TEMPF 
+           FIX 
+           CHAR 
+           STX LINE+4(2:5) 
+           OUT LINE(TERM) 
+           JBUS *(TERM) 
+           ENT1 0 
+           ST1 LINE 
+           JMP *+42 
+           LDA 2 
+           STA TEMP 
+           ENTA 1000 
+           STA TEMPF 
+           ENTA 499 
+           FDIV TEMPF 
+           STA TEMPF 
+           LDA TEMP 
+           JAN *+3 
+           FSUB TEMPF 
+           JMP *+2 
+           FADD TEMPF 
+           FIX 
+           JANN *+3 
+           ENT1 45 
+           ST1 LINE 
+           STA TEMPF 
+           CHAR 
+           STX LINE+1 
+           LDA TEMPF 
+           FLOT 
+           STA TEMPF 
+           ENTA 40 
+           SLA 4 
+           STA LINE+2 
+           LDA TEMP 
+           FSUB TEMPF 
+           STA TEMPF 
+           ENTA 100 
+           STA TEMP 
+           MUL TEMP 
+           SLAX 5 
+           FLOT 
+           FMUL TEMPF 
+           FIX 
+           CHAR 
+           STX LINE+4(2:5) 
+           OUT LINE(TERM) 
+           JBUS *(TERM) 
+           ENT1 0 
+           ST1 LINE 
+           HLT 
+OVERFLOWST ALF OVERF 
+           ALF LOW   
+           ORIG *+22 
+OVERFLOWEX OUT OVERFLOWST(TERM) 
+           JBUS *(TERM) 
+           HLT 
+           END BEGIN 

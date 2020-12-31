@@ -1,0 +1,7 @@
+Various exercises for my cryptography course, coded in C++.
+rc4: Implementation of the RC4 cipher.
+otp: Implementation of the one time pad encryption technique.
+ex2: Code for examining the avalanche effect in AES and Camellia ciphers. Uses the OpenSSL library.
+ex3: Code for cracking the Vigenere cipher.
+ex8: Code implementing the Fischer-Spiffy–Mixer mode of operation, using the AES block cipher.
+
