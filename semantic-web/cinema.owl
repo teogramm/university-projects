@@ -1,0 +1,1769 @@
+@prefix : <http://teochris.local/cinema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix cinema: <http://teochris.local/cinema#> .
+@base <http://teochris.local/cinema> .
+
+<http://teochris.local/cinema> rdf:type owl:Ontology ;
+                                spin:imports <http://topbraid.org/spin/rdfsplus> ;
+                                owl:versionInfo "Created with TopBraid Composer" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://spinrdf.org/spin#imports
+spin:imports rdf:type owl:AnnotationProperty .
+
+
+###  http://teochris.local/cinema#movieName
+cinema:movieName rdf:type owl:AnnotationProperty ;
+                 rdfs:subPropertyOf cinema:name ;
+                 rdfs:range xsd:string ;
+                 rdfs:domain cinema:Movie .
+
+
+###  http://teochris.local/cinema#name
+cinema:name rdf:type owl:AnnotationProperty ;
+            rdfs:label "name" ;
+            rdfs:subPropertyOf rdfs:label ;
+            rdfs:range xsd:string .
+
+
+###  http://teochris.local/cinema#seriesName
+cinema:seriesName rdf:type owl:AnnotationProperty ;
+                  rdfs:comment "Name of a movie series" ;
+                  rdfs:label "series name" ;
+                  rdfs:subPropertyOf cinema:name ;
+                  rdfs:range xsd:string ;
+                  rdfs:domain cinema:MovieSeries .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://teochris.local/cinema#actedIn
+cinema:actedIn rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf cinema:contributedTo ;
+               owl:inverseOf cinema:hasActor ;
+               rdfs:domain cinema:Actor ;
+               rdfs:range cinema:Movie ;
+               rdfs:label "acted in" .
+
+
+###  http://teochris.local/cinema#belongsToGenre
+cinema:belongsToGenre rdf:type owl:ObjectProperty ;
+                      rdfs:domain cinema:Movie ;
+                      rdfs:range cinema:Genre ;
+                      rdfs:label "Belongs to Genre" .
+
+
+###  http://teochris.local/cinema#contributedTo
+cinema:contributedTo rdf:type owl:ObjectProperty ;
+                     owl:inverseOf cinema:hasContributor ;
+                     rdfs:domain cinema:Person ;
+                     rdfs:range cinema:Movie ;
+                     rdfs:label "contributed" .
+
+
+###  http://teochris.local/cinema#directed
+cinema:directed rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf cinema:contributedTo ;
+                owl:inverseOf cinema:directedBy ;
+                rdfs:domain cinema:Director ;
+                rdfs:range cinema:Movie ;
+                rdfs:label "directed" .
+
+
+###  http://teochris.local/cinema#directedBy
+cinema:directedBy rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf cinema:hasContributor .
+
+
+###  http://teochris.local/cinema#givesOut
+cinema:givesOut rdf:type owl:ObjectProperty ;
+                owl:inverseOf cinema:isGivenBy ;
+                rdfs:domain cinema:AwardsOrganization ;
+                rdfs:range cinema:Award ;
+                rdfs:comment "States that an organization gives out an award" ;
+                rdfs:label "gives out" .
+
+
+###  http://teochris.local/cinema#hasActor
+cinema:hasActor rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf cinema:hasContributor .
+
+
+###  http://teochris.local/cinema#hasAward
+cinema:hasAward rdf:type owl:ObjectProperty ;
+                rdfs:range cinema:Award ;
+                rdfs:label "has award" .
+
+
+###  http://teochris.local/cinema#hasContributor
+cinema:hasContributor rdf:type owl:ObjectProperty .
+
+
+###  http://teochris.local/cinema#hasMovie
+cinema:hasMovie rdf:type owl:ObjectProperty ;
+                owl:inverseOf cinema:partOf ;
+                rdf:type owl:InverseFunctionalProperty ;
+                rdfs:label "Series has movie" .
+
+
+###  http://teochris.local/cinema#hasPrequel
+cinema:hasPrequel rdf:type owl:ObjectProperty ;
+                  owl:inverseOf cinema:hasSequel ;
+                  rdf:type owl:FunctionalProperty ,
+                           owl:InverseFunctionalProperty .
+
+
+###  http://teochris.local/cinema#hasProduced
+cinema:hasProduced rdf:type owl:ObjectProperty ;
+                   owl:inverseOf cinema:producedBy .
+
+
+###  http://teochris.local/cinema#hasSequel
+cinema:hasSequel rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:FunctionalProperty ,
+                          owl:InverseFunctionalProperty ;
+                 rdfs:domain cinema:Movie ;
+                 rdfs:range cinema:Movie .
+
+
+###  http://teochris.local/cinema#hasSubsidiary
+cinema:hasSubsidiary rdf:type owl:ObjectProperty ,
+                              owl:TransitiveProperty ;
+                     rdfs:domain cinema:Company ;
+                     rdfs:range cinema:Company ;
+                     rdfs:label "Has subsidiary" .
+
+
+###  http://teochris.local/cinema#isGivenBy
+cinema:isGivenBy rdf:type owl:ObjectProperty ;
+                 rdfs:label "Given by" .
+
+
+###  http://teochris.local/cinema#movieHasAward
+cinema:movieHasAward rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf cinema:hasAward ;
+                     rdfs:domain cinema:Movie ;
+                     rdfs:range cinema:MovieAward ;
+                     rdfs:label "Movie has award" .
+
+
+###  http://teochris.local/cinema#partOf
+cinema:partOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain cinema:Movie ;
+              rdfs:range cinema:MovieSeries ;
+              rdfs:comment "States that a movie is part of a movie series" ;
+              rdfs:label "Part of" .
+
+
+###  http://teochris.local/cinema#personHasAward
+cinema:personHasAward rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf cinema:hasAward ;
+                      rdfs:domain cinema:Person ;
+                      rdfs:range cinema:PersonAward ;
+                      rdfs:label "person has award" .
+
+
+###  http://teochris.local/cinema#producedBy
+cinema:producedBy rdf:type owl:ObjectProperty ;
+                  rdfs:domain cinema:Movie ;
+                  rdfs:range cinema:ProductionCompany ;
+                  rdfs:label "Produced By" .
+
+
+###  http://teochris.local/cinema#starredIn
+cinema:starredIn rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf cinema:actedIn ;
+                 rdfs:domain cinema:Actor ;
+                 rdfs:range cinema:Movie ;
+                 rdfs:label "starred in" .
+
+
+###  http://teochris.local/cinema#writtenBy
+cinema:writtenBy rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf cinema:hasContributor ;
+                 owl:inverseOf cinema:wrote .
+
+
+###  http://teochris.local/cinema#wrote
+cinema:wrote rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf cinema:contributedTo ;
+             rdfs:domain cinema:Writer ;
+             rdfs:range cinema:Movie ;
+             rdfs:label "wrote" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://teochris.local/cinema#aboutGenre
+cinema:aboutGenre rdf:type owl:DatatypeProperty ;
+                  rdfs:domain cinema:Genre ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "about genre" .
+
+
+###  http://teochris.local/cinema#dateOfBirth
+cinema:dateOfBirth rdf:type owl:DatatypeProperty ;
+                   rdfs:domain cinema:Person ;
+                   rdfs:range xsd:date ;
+                   rdfs:label "date of birth" .
+
+
+###  http://teochris.local/cinema#dateofDeath
+cinema:dateofDeath rdf:type owl:DatatypeProperty ;
+                   rdfs:domain cinema:Person ;
+                   rdfs:range xsd:date ;
+                   rdfs:label "dateof death" .
+
+
+###  http://teochris.local/cinema#description
+cinema:description rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "A short description of the movie" ;
+                   rdfs:label "Description" .
+
+
+###  http://teochris.local/cinema#duration
+cinema:duration rdf:type owl:DatatypeProperty ;
+                rdfs:domain cinema:Movie ;
+                rdfs:range xsd:integer ;
+                rdfs:comment "Movie duration in minutes" ;
+                rdfs:label "duration" .
+
+
+###  http://teochris.local/cinema#firstName
+cinema:firstName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain cinema:Person ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "first name" .
+
+
+###  http://teochris.local/cinema#imdbId
+cinema:imdbId rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:range xsd:string ;
+              rdfs:comment "ID of the movie on imdb" .
+
+
+###  http://teochris.local/cinema#isAlive
+cinema:isAlive rdf:type owl:DatatypeProperty ;
+               rdfs:domain cinema:Person ;
+               rdfs:range xsd:boolean ;
+               rdfs:label "is alive" .
+
+
+###  http://teochris.local/cinema#lastName
+cinema:lastName rdf:type owl:DatatypeProperty ;
+                rdfs:domain cinema:Person ;
+                rdfs:range xsd:string ;
+                rdfs:label "last name" .
+
+
+###  http://teochris.local/cinema#movieName
+cinema:movieName rdf:type owl:DatatypeProperty .
+
+
+###  http://teochris.local/cinema#releaseYear
+cinema:releaseYear rdf:type owl:DatatypeProperty ;
+                   rdfs:domain cinema:Movie ;
+                   rdfs:range xsd:integer ;
+                   rdfs:comment "Year the movie was released." ;
+                   rdfs:label "release year" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://teochris.local/cinema#Actor
+cinema:Actor rdf:type owl:Class ;
+             rdfs:subClassOf cinema:Person ;
+             rdfs:label "Actor" .
+
+
+###  http://teochris.local/cinema#AnimatedMovie
+cinema:AnimatedMovie rdf:type owl:Class ;
+                     rdfs:subClassOf cinema:Movie ;
+                     rdfs:comment "Ταινία κινουμένων σχεδίων" .
+
+
+###  http://teochris.local/cinema#AnimatedMovieProductionCompany
+cinema:AnimatedMovieProductionCompany rdf:type owl:Class ;
+                                      rdfs:subClassOf cinema:ProductionCompany ,
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty cinema:hasProduced ;
+                                                        owl:allValuesFrom cinema:AnimatedMovie
+                                                      ] ;
+                                      rdfs:comment "Εταιρεία παραγωγής που παράγει ταινίες κινουμένων σχεδίων" .
+
+
+###  http://teochris.local/cinema#Award
+cinema:Award rdf:type owl:Class ;
+             rdfs:label "Award" .
+
+
+###  http://teochris.local/cinema#AwardedActor
+cinema:AwardedActor rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( cinema:Actor
+                                                               cinema:AwardedPerson
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf cinema:Actor .
+
+
+###  http://teochris.local/cinema#AwardedDirector
+cinema:AwardedDirector rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( cinema:AwardedPerson
+                                                                  cinema:Director
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf cinema:Director .
+
+
+###  http://teochris.local/cinema#AwardedMovie
+cinema:AwardedMovie rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty cinema:movieHasAward ;
+                                          owl:someValuesFrom cinema:Award
+                                        ] ;
+                    rdfs:subClassOf cinema:Movie .
+
+
+###  http://teochris.local/cinema#AwardedPerson
+cinema:AwardedPerson rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty cinema:personHasAward ;
+                                           owl:someValuesFrom cinema:Award
+                                         ] ;
+                     rdfs:subClassOf cinema:Person .
+
+
+###  http://teochris.local/cinema#AwardedWriter
+cinema:AwardedWriter rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( cinema:AwardedPerson
+                                                                cinema:Writer
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     rdfs:subClassOf cinema:Writer .
+
+
+###  http://teochris.local/cinema#AwardsOrganization
+cinema:AwardsOrganization rdf:type owl:Class ;
+                          rdfs:comment "An organization that gives out awards related to motion pictures." ;
+                          rdfs:label "Awards organization" .
+
+
+###  http://teochris.local/cinema#BestPictureAwardedMovie
+cinema:BestPictureAwardedMovie rdf:type owl:Class ;
+                               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                     owl:onProperty cinema:movieHasAward ;
+                                                     owl:hasValue cinema:BestPictureOscar
+                                                   ] ;
+                               rdfs:subClassOf cinema:AwardedMovie ;
+                               rdfs:comment "Movies that have been awarded the BestPicture Oscar" .
+
+
+###  http://teochris.local/cinema#Company
+cinema:Company rdf:type owl:Class .
+
+
+###  http://teochris.local/cinema#Director
+cinema:Director rdf:type owl:Class ;
+                rdfs:subClassOf cinema:Person ;
+                rdfs:label "Director" .
+
+
+###  http://teochris.local/cinema#DirectorsOrWriters
+cinema:DirectorsOrWriters rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:unionOf ( cinema:Actor
+                                                              cinema:Writer
+                                                            )
+                                              ] ;
+                          rdfs:subClassOf cinema:Person ;
+                          rdfs:comment "Κλάση που περιέχει την ένωση των σκηνοθετών με τους συγγραφείς." .
+
+
+###  http://teochris.local/cinema#Genre
+cinema:Genre rdf:type owl:Class ;
+             rdfs:label "Genre" .
+
+
+###  http://teochris.local/cinema#Movie
+cinema:Movie rdf:type owl:Class ;
+             rdfs:label "Movie" .
+
+
+###  http://teochris.local/cinema#MovieAward
+cinema:MovieAward rdf:type owl:Class ;
+                  rdfs:subClassOf cinema:Award ;
+                  rdfs:comment "Award that is given out to a movie (for example Best Picture)" ;
+                  rdfs:label "Movie award" .
+
+
+###  http://teochris.local/cinema#MovieSeries
+cinema:MovieSeries rdf:type owl:Class ;
+                   rdfs:comment "A movie series." ;
+                   rdfs:label "Movie series" .
+
+
+###  http://teochris.local/cinema#Person
+cinema:Person rdf:type owl:Class ;
+              rdfs:label "Person" .
+
+
+###  http://teochris.local/cinema#PersonAward
+cinema:PersonAward rdf:type owl:Class ;
+                   rdfs:subClassOf cinema:Award ;
+                   rdfs:comment "Award that is given out to a person (for example Best Actor)" ;
+                   rdfs:label "Person award" .
+
+
+###  http://teochris.local/cinema#ProductionCompany
+cinema:ProductionCompany rdf:type owl:Class ;
+                         rdfs:subClassOf cinema:Company ;
+                         rdfs:label "Production company" .
+
+
+###  http://teochris.local/cinema#Writer
+cinema:Writer rdf:type owl:Class ;
+              rdfs:subClassOf cinema:Person ;
+              rdfs:label "Writer" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://teochris.local/cinema#AMPAS
+cinema:AMPAS rdf:type owl:NamedIndividual ,
+                      cinema:AwardsOrganization ;
+             cinema:givesOut cinema:BestActorOscar ,
+                             cinema:BestActressOscar ,
+                             cinema:BestDirectorOscar ,
+                             cinema:BestEffectsOscar ,
+                             cinema:BestPictureOscar ,
+                             cinema:BestSupportingActorOscar ,
+                             cinema:BestSupportingActressOscar ,
+                             cinema:BestWriterOscarOriginal ,
+                             cinema:BestWriterOscarPrev ;
+             rdfs:label "Academy of Motion Picture Arts and Sciences" .
+
+
+###  http://teochris.local/cinema#ATT
+cinema:ATT rdf:type owl:NamedIndividual ,
+                    cinema:Company ;
+           cinema:hasSubsidiary cinema:WarnerMedia ;
+           rdfs:label "AT&T" .
+
+
+###  http://teochris.local/cinema#Action
+cinema:Action rdf:type owl:NamedIndividual ,
+                       cinema:Genre ;
+              cinema:aboutGenre "Action film is a film genre in which the protagonist or protagonists are thrust into a series of events that typically include violence, extended fighting, physical feats, rescues and frantic chases." ;
+              rdfs:label "Action" .
+
+
+###  http://teochris.local/cinema#Adventure
+cinema:Adventure rdf:type owl:NamedIndividual ,
+                          cinema:Genre ;
+                 cinema:aboutGenre "An adventure film is form of adventure fiction, and is a genre of film. Subgenres of adventure films include swashbuckler films, pirate films, and survival films. Adventure films may also be combined with other film genres such as action, animation, comedy, drama, fantasy, science fiction, family, horror, or war." ;
+                 rdfs:label "Adventure" .
+
+
+###  http://teochris.local/cinema#Al_Pacino
+cinema:Al_Pacino rdf:type owl:NamedIndividual ,
+                          cinema:Person ;
+                 cinema:actedIn cinema:The_Godfather ;
+                 cinema:personHasAward cinema:BestActorOscar ,
+                                       cinema:BestActorinaMotionPictureDrama ;
+                 cinema:starredIn cinema:The_Godfather_Part_II ,
+                                  cinema:The_Godfather_Part_III ;
+                 cinema:dateOfBirth "1940-04-25"^^xsd:date ;
+                 cinema:firstName "Al" ;
+                 cinema:isAlive "true"^^xsd:boolean ;
+                 cinema:lastName "Pacino" ;
+                 rdfs:label "Al Pacino" .
+
+
+###  http://teochris.local/cinema#Alfred_Hitchcock
+cinema:Alfred_Hitchcock rdf:type owl:NamedIndividual ,
+                                 cinema:Person ;
+                        cinema:actedIn cinema:Psycho ;
+                        cinema:directed cinema:Psycho ;
+                        cinema:dateOfBirth "1899-08-13"^^xsd:date ;
+                        cinema:dateofDeath "1980-04-29"^^xsd:date ;
+                        cinema:firstName "Alfred" ;
+                        cinema:isAlive "false"^^xsd:boolean ;
+                        cinema:lastName "Hitchcock" ;
+                        rdfs:label "Alfred Hitchcock" .
+
+
+###  http://teochris.local/cinema#American_Psycho
+cinema:American_Psycho rdf:type owl:NamedIndividual ,
+                                cinema:Movie ;
+                       cinema:belongsToGenre cinema:Drama ;
+                       cinema:producedBy cinema:Lionsgate_Films ;
+                       cinema:duration 101 ;
+                       cinema:imdbId "tt0144084" ;
+                       cinema:releaseYear 2000 ;
+                       cinema:movieName "American Psycho" ;
+                       rdfs:label "American Psycho" .
+
+
+###  http://teochris.local/cinema#Andie_MacDowell
+cinema:Andie_MacDowell rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:actedIn cinema:Groundhog_Day ;
+                       cinema:dateOfBirth "1958-04-21"^^xsd:date ;
+                       cinema:firstName "Andie" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "MacDowell" ;
+                       rdfs:label "Andie MacDowell" .
+
+
+###  http://teochris.local/cinema#Andrew_Kevin_Walker
+cinema:Andrew_Kevin_Walker rdf:type owl:NamedIndividual ,
+                                    cinema:Person ;
+                           cinema:wrote cinema:Seven ;
+                           cinema:dateOfBirth "1964-08-14"^^xsd:date ;
+                           cinema:firstName "Andrew Kevin" ;
+                           cinema:isAlive "true"^^xsd:boolean ;
+                           cinema:lastName "Walker" ;
+                           rdfs:label "Andrew Kevin Walker" .
+
+
+###  http://teochris.local/cinema#Anthony_Perkins
+cinema:Anthony_Perkins rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:starredIn cinema:Psycho ;
+                       cinema:dateOfBirth "1932-04-04"^^xsd:date ;
+                       cinema:dateofDeath "1992-09-12"^^xsd:date ;
+                       cinema:firstName "Anthony" ;
+                       cinema:isAlive "false"^^xsd:boolean ;
+                       cinema:lastName "Perkins" ;
+                       rdfs:label "Anthony Perkins" .
+
+
+###  http://teochris.local/cinema#BestActorOscar
+cinema:BestActorOscar rdf:type owl:NamedIndividual ,
+                               cinema:PersonAward ;
+                      rdfs:label "Best Actor Oscar" .
+
+
+###  http://teochris.local/cinema#BestActorinaMotionPictureDrama
+cinema:BestActorinaMotionPictureDrama rdf:type owl:NamedIndividual ,
+                                               cinema:PersonAward ;
+                                      rdfs:label "Best Actor in a Motion Picture Drama" .
+
+
+###  http://teochris.local/cinema#BestActorinaMotionPictureMusicalorComedy
+cinema:BestActorinaMotionPictureMusicalorComedy rdf:type owl:NamedIndividual ,
+                                                         cinema:PersonAward ;
+                                                rdfs:label "Best Actor in a Motion Picture Musical or Comedy" .
+
+
+###  http://teochris.local/cinema#BestActressOscar
+cinema:BestActressOscar rdf:type owl:NamedIndividual ,
+                                 cinema:PersonAward ;
+                        rdfs:label "Best Actress Oscar" .
+
+
+###  http://teochris.local/cinema#BestActressinaMotionPictureDrama
+cinema:BestActressinaMotionPictureDrama rdf:type owl:NamedIndividual ,
+                                                 cinema:PersonAward ;
+                                        rdfs:label "Best Actress in a Motion Picture Drama" .
+
+
+###  http://teochris.local/cinema#BestActressinaMotionPictureMusicalorComedy
+cinema:BestActressinaMotionPictureMusicalorComedy rdf:type owl:NamedIndividual ,
+                                                           cinema:PersonAward ;
+                                                  rdfs:label "Best Actress in a Motion Picture Musical or Comedy" .
+
+
+###  http://teochris.local/cinema#BestDirectorMotionPicture
+cinema:BestDirectorMotionPicture rdf:type owl:NamedIndividual ,
+                                          cinema:PersonAward ;
+                                 rdfs:label "Best Director Motion Picture" .
+
+
+###  http://teochris.local/cinema#BestDirectorOscar
+cinema:BestDirectorOscar rdf:type owl:NamedIndividual ,
+                                  cinema:PersonAward ;
+                         rdfs:label "Best Director Oscar" .
+
+
+###  http://teochris.local/cinema#BestEffectsOscar
+cinema:BestEffectsOscar rdf:type owl:NamedIndividual ,
+                                 cinema:MovieAward .
+
+
+###  http://teochris.local/cinema#BestMotionPictureDrama
+cinema:BestMotionPictureDrama rdf:type owl:NamedIndividual ,
+                                       cinema:MovieAward ;
+                              rdfs:label "Best Motion Picture Drama" .
+
+
+###  http://teochris.local/cinema#BestMotionPictureMusicalComedy
+cinema:BestMotionPictureMusicalComedy rdf:type owl:NamedIndividual ,
+                                               cinema:MovieAward ;
+                                      rdfs:label "Best Motion Picture Musical Comedy" .
+
+
+###  http://teochris.local/cinema#BestPictureOscar
+cinema:BestPictureOscar rdf:type owl:NamedIndividual ,
+                                 cinema:MovieAward ;
+                        rdfs:label "Best Picture Oscar" .
+
+
+###  http://teochris.local/cinema#BestScreenplayMotionPicture
+cinema:BestScreenplayMotionPicture rdf:type owl:NamedIndividual ,
+                                            cinema:PersonAward ;
+                                   rdfs:label "Best Screenplay  Motion Picture" .
+
+
+###  http://teochris.local/cinema#BestSupportingActorMotionPicture
+cinema:BestSupportingActorMotionPicture rdf:type owl:NamedIndividual ,
+                                                 cinema:PersonAward ;
+                                        rdfs:label "Best Supporting Actor Motion Picture" .
+
+
+###  http://teochris.local/cinema#BestSupportingActorOscar
+cinema:BestSupportingActorOscar rdf:type owl:NamedIndividual ,
+                                         cinema:PersonAward ;
+                                rdfs:label "Best Supporting Actor Oscar" .
+
+
+###  http://teochris.local/cinema#BestSupportingActressMotionPicture
+cinema:BestSupportingActressMotionPicture rdf:type owl:NamedIndividual ,
+                                                   cinema:PersonAward ;
+                                          rdfs:label "Best Supporting Actress Motion Picture" .
+
+
+###  http://teochris.local/cinema#BestSupportingActressOscar
+cinema:BestSupportingActressOscar rdf:type owl:NamedIndividual ,
+                                           cinema:PersonAward ;
+                                  rdfs:label "Best Supporting Actress Oscar" .
+
+
+###  http://teochris.local/cinema#BestWriterOscarOriginal
+cinema:BestWriterOscarOriginal rdf:type owl:NamedIndividual ,
+                                        cinema:PersonAward ;
+                               rdfs:label "Best Writer Oscar Original" .
+
+
+###  http://teochris.local/cinema#BestWriterOscarPrev
+cinema:BestWriterOscarPrev rdf:type owl:NamedIndividual ,
+                                    cinema:PersonAward ;
+                           rdfs:label "Best Writer Oscar Prev" .
+
+
+###  http://teochris.local/cinema#Bill_Murray
+cinema:Bill_Murray rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:starredIn cinema:Groundhog_Day ;
+                   cinema:firstName "Bill" ;
+                   cinema:isAlive "true"^^xsd:boolean ;
+                   cinema:lastName "Murray" ;
+                   rdfs:label "Bill Murray" .
+
+
+###  http://teochris.local/cinema#Brad_Pitt
+cinema:Brad_Pitt rdf:type owl:NamedIndividual ,
+                          cinema:Person ;
+                 cinema:actedIn cinema:Fight_Club ,
+                                cinema:Snatch ;
+                 cinema:personHasAward cinema:BestSupportingActorMotionPicture ,
+                                       cinema:BestSupportingActorOscar ;
+                 cinema:starredIn cinema:Inglourious_Basterds ,
+                                  cinema:Seven ;
+                 cinema:dateOfBirth "1963-12-18"^^xsd:date ;
+                 cinema:firstName "Brad" ;
+                 cinema:isAlive "true"^^xsd:boolean ;
+                 cinema:lastName "Pitt" ;
+                 rdfs:label "Brad Pitt" .
+
+
+###  http://teochris.local/cinema#Brazil
+cinema:Brazil rdf:type owl:NamedIndividual ,
+                       cinema:Movie ;
+              cinema:belongsToGenre cinema:Fantasy ;
+              cinema:producedBy cinema:RegencyEnterprises ;
+              cinema:duration 132 ;
+              cinema:imdbId "tt0088846" ;
+              cinema:releaseYear 1985 ;
+              cinema:movieName "Brazil" ;
+              rdfs:label "Brazil" .
+
+
+###  http://teochris.local/cinema#Carrie_Ann_Moss
+cinema:Carrie_Ann_Moss rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:actedIn cinema:The_Matrix ;
+                       cinema:dateOfBirth "1967-08-21"^^xsd:date ;
+                       cinema:firstName "Carrie-Ann" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "Moss" ;
+                       rdfs:label "Carrie Ann Moss" .
+
+
+###  http://teochris.local/cinema#Christian_Bale
+cinema:Christian_Bale rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:personHasAward cinema:BestActorinaMotionPictureMusicalorComedy ,
+                                            cinema:BestSupportingActorMotionPicture ,
+                                            cinema:BestSupportingActorOscar ;
+                      cinema:starredIn cinema:American_Psycho ;
+                      cinema:dateOfBirth "1974-01-30"^^xsd:date ;
+                      cinema:firstName "Christian" ;
+                      cinema:imdbId "nm0000288" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Bale" ;
+                      rdfs:label "Christian Bale" .
+
+
+###  http://teochris.local/cinema#Christoph_Waltz
+cinema:Christoph_Waltz rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:actedIn cinema:Inglourious_Basterds ;
+                       cinema:personHasAward cinema:BestSupportingActorMotionPicture ,
+                                             cinema:BestSupportingActorOscar ;
+                       cinema:dateOfBirth "1956-10-04"^^xsd:date ;
+                       cinema:firstName "Christoph" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "Waltz" ;
+                       rdfs:label "Christoph Waltz" .
+
+
+###  http://teochris.local/cinema#ColumbiaPictures
+cinema:ColumbiaPictures rdf:type owl:NamedIndividual ,
+                                 cinema:ProductionCompany .
+
+
+###  http://teochris.local/cinema#Comcast
+cinema:Comcast rdf:type owl:NamedIndividual ,
+                        cinema:Company ;
+               cinema:hasSubsidiary cinema:NBCUniversal .
+
+
+###  http://teochris.local/cinema#Comedy
+cinema:Comedy rdf:type owl:NamedIndividual ,
+                       cinema:Genre ;
+              cinema:aboutGenre "Comedy is a genre of fiction that consists of discourses or works intended to be humorous or amusing by inducing laughter" ;
+              rdfs:label "Comedy" .
+
+
+###  http://teochris.local/cinema#Cybill_Shepherd
+cinema:Cybill_Shepherd rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:actedIn cinema:Taxi_Driver ;
+                       cinema:dateOfBirth "1950-02-18"^^xsd:date ;
+                       cinema:firstName "Cybill" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "Shepherd" ;
+                       rdfs:label "Cybill Shepherd" .
+
+
+###  http://teochris.local/cinema#David_Fincher
+cinema:David_Fincher rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:directed cinema:Fight_Club ,
+                                     cinema:Seven ;
+                     cinema:personHasAward cinema:BestDirectorMotionPicture ;
+                     cinema:dateOfBirth "1962-08-28"^^xsd:date ;
+                     cinema:firstName "David" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Fincher" ;
+                     rdfs:label "David Fincher" .
+
+
+###  http://teochris.local/cinema#Dr._Strangelove
+cinema:Dr._Strangelove rdf:type owl:NamedIndividual ,
+                                cinema:Movie ;
+                       cinema:belongsToGenre cinema:Comedy ;
+                       cinema:producedBy cinema:HawkFilms ;
+                       cinema:duration 95 ;
+                       cinema:imdbId "tt0057012" ;
+                       cinema:releaseYear 1964 ;
+                       cinema:movieName "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb" ;
+                       rdfs:label "Dr. Strangelove" .
+
+
+###  http://teochris.local/cinema#Drama
+cinema:Drama rdf:type owl:NamedIndividual ,
+                      cinema:Genre ;
+             cinema:aboutGenre "In film and television, drama is a category of narrative fiction intended to be more serious than humorous in tone." ;
+             rdfs:label "Drama" .
+
+
+###  http://teochris.local/cinema#Edgar_Wright
+cinema:Edgar_Wright rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:directed cinema:Hot_Fuzz ;
+                    cinema:wrote cinema:Hot_Fuzz ;
+                    cinema:dateOfBirth "1974-04-18"^^xsd:date ;
+                    cinema:firstName "Edgar" ;
+                    cinema:isAlive "true"^^xsd:boolean ;
+                    cinema:lastName "Wright" ;
+                    rdfs:label "Edgar Wright" .
+
+
+###  http://teochris.local/cinema#Edward_Norton
+cinema:Edward_Norton rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:contributedTo cinema:Fight_Club ;
+                     cinema:personHasAward cinema:BestSupportingActorMotionPicture ;
+                     cinema:starredIn cinema:Fight_Club ;
+                     cinema:dateOfBirth "1969-08-18"^^xsd:date ;
+                     cinema:firstName "Edward" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Norton" ;
+                     rdfs:label "Edward Norton" .
+
+
+###  http://teochris.local/cinema#Eric_Idle
+cinema:Eric_Idle rdf:type owl:NamedIndividual ,
+                          cinema:Person ;
+                 cinema:actedIn cinema:Monty_Python_and_the_Holy_Grail ;
+                 cinema:wrote cinema:Monty_Python_and_the_Holy_Grail ;
+                 cinema:dateOfBirth "1943-03-29"^^xsd:date ;
+                 cinema:firstName "Eric" ;
+                 cinema:isAlive "true"^^xsd:boolean ;
+                 cinema:lastName "Idle" ;
+                 rdfs:label "Eric Idle" .
+
+
+###  http://teochris.local/cinema#Fantasy
+cinema:Fantasy rdf:type owl:NamedIndividual ,
+                        cinema:Genre ;
+               cinema:aboutGenre "Fantasy is a genre of speculative fiction set in a fictional universe, often inspired by real-world myth and folklore." ;
+               rdfs:label "Fantasy" .
+
+
+###  http://teochris.local/cinema#Fight_Club
+cinema:Fight_Club rdf:type owl:NamedIndividual ,
+                           cinema:Movie ;
+                  cinema:belongsToGenre cinema:Drama ;
+                  cinema:duration 139 ;
+                  cinema:imdbId "tt0137523" ;
+                  cinema:releaseYear 1999 ;
+                  cinema:movieName "Fight Club" ;
+                  rdfs:label "Fight Club" .
+
+
+###  http://teochris.local/cinema#Forrest_Gump
+cinema:Forrest_Gump rdf:type owl:NamedIndividual ,
+                             cinema:Movie ;
+                    cinema:belongsToGenre cinema:Drama ;
+                    cinema:movieHasAward cinema:BestMotionPictureDrama ,
+                                         cinema:BestPictureOscar ;
+                    cinema:producedBy cinema:ParamountPictures ;
+                    cinema:duration 144 ;
+                    cinema:imdbId "tt0109830" ;
+                    cinema:releaseYear 1994 ;
+                    cinema:movieName "Forrest Gump" ;
+                    rdfs:label "Forrest Gump" .
+
+
+###  http://teochris.local/cinema#Fox2000
+cinema:Fox2000 rdf:type owl:NamedIndividual ,
+                        cinema:Company ;
+               rdfs:label "Fox 2000 Pictures" .
+
+
+###  http://teochris.local/cinema#Francis_Ford_Coppola
+cinema:Francis_Ford_Coppola rdf:type owl:NamedIndividual ,
+                                     cinema:Person ;
+                            cinema:directed cinema:The_Godfather ,
+                                            cinema:The_Godfather_Part_II ,
+                                            cinema:The_Godfather_Part_III ;
+                            cinema:personHasAward cinema:BestDirectorMotionPicture ,
+                                                  cinema:BestDirectorOscar ,
+                                                  cinema:BestScreenplayMotionPicture ,
+                                                  cinema:BestWriterOscarPrev ;
+                            cinema:wrote cinema:The_Godfather ,
+                                         cinema:The_Godfather_Part_II ,
+                                         cinema:The_Godfather_Part_III ;
+                            cinema:dateOfBirth "1939-04-07"^^xsd:date ;
+                            cinema:firstName "Francis Ford" ;
+                            cinema:isAlive "true"^^xsd:boolean ;
+                            cinema:lastName "Coppola" ;
+                            rdfs:label "Francis Ford Coppola" .
+
+
+###  http://teochris.local/cinema#Gary_Sinise
+cinema:Gary_Sinise rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:actedIn cinema:Forrest_Gump ;
+                   cinema:firstName "Gary" ;
+                   cinema:isAlive "true"^^xsd:boolean ;
+                   cinema:lastName "Sinise" ;
+                   rdfs:label "Gary Sinise" .
+
+
+###  http://teochris.local/cinema#Graham_Chapman
+cinema:Graham_Chapman rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:starredIn cinema:Monty_Python_and_the_Holy_Grail ;
+                      cinema:wrote cinema:Monty_Python_and_the_Holy_Grail ;
+                      cinema:dateOfBirth "1941-01-08"^^xsd:date ;
+                      cinema:dateofDeath "1989-10-04"^^xsd:date ;
+                      cinema:firstName "Graham" ;
+                      cinema:isAlive "false"^^xsd:boolean ;
+                      cinema:lastName "Chapman" ;
+                      rdfs:label "Graham Chapman" .
+
+
+###  http://teochris.local/cinema#Groundhog_Day
+cinema:Groundhog_Day rdf:type owl:NamedIndividual ,
+                              cinema:Movie ;
+                     cinema:belongsToGenre cinema:Fantasy ;
+                     cinema:producedBy cinema:ColumbiaPictures ;
+                     cinema:duration 101 ;
+                     cinema:imdbId "tt0107048" ;
+                     cinema:releaseYear 1993 ;
+                     cinema:movieName "Groundhog Day" ;
+                     rdfs:label "Groundhog Day" .
+
+
+###  http://teochris.local/cinema#Guy_Ritchie
+cinema:Guy_Ritchie rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:directed cinema:Lock_Stock_And_Two_Smoking_Barrels ,
+                                   cinema:Snatch ;
+                   cinema:wrote cinema:Snatch ;
+                   cinema:dateOfBirth "1968-09-10"^^xsd:date ;
+                   cinema:firstName "Guy" ;
+                   cinema:isAlive "true"^^xsd:boolean ;
+                   cinema:lastName "Ritchie" ;
+                   rdfs:label "Guy Ritchie" .
+
+
+###  http://teochris.local/cinema#Harold_Ramis
+cinema:Harold_Ramis rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:directed cinema:Groundhog_Day ;
+                    cinema:dateOfBirth "1944-11-21"^^xsd:date ;
+                    cinema:dateofDeath "2014-02-24"^^xsd:date ;
+                    cinema:firstName "Harold" ;
+                    cinema:isAlive "false"^^xsd:boolean ;
+                    cinema:lastName "Ramis" ;
+                    rdfs:label "Harold Ramis" .
+
+
+###  http://teochris.local/cinema#HawkFilms
+cinema:HawkFilms rdf:type owl:NamedIndividual ,
+                          cinema:ProductionCompany .
+
+
+###  http://teochris.local/cinema#Hollywood_Foreign_Press_Association
+cinema:Hollywood_Foreign_Press_Association rdf:type owl:NamedIndividual ,
+                                                    cinema:AwardsOrganization ;
+                                           cinema:givesOut cinema:BestActorinaMotionPictureDrama ,
+                                                           cinema:BestActorinaMotionPictureMusicalorComedy ,
+                                                           cinema:BestActressinaMotionPictureDrama ,
+                                                           cinema:BestActressinaMotionPictureMusicalorComedy ,
+                                                           cinema:BestDirectorMotionPicture ,
+                                                           cinema:BestMotionPictureDrama ,
+                                                           cinema:BestMotionPictureMusicalComedy ,
+                                                           cinema:BestScreenplayMotionPicture ,
+                                                           cinema:BestSupportingActorMotionPicture ,
+                                                           cinema:BestSupportingActressMotionPicture ;
+                                           rdfs:label "Hollywood Foreign Press Association" .
+
+
+###  http://teochris.local/cinema#Horror
+cinema:Horror rdf:type owl:NamedIndividual ,
+                       cinema:Genre ;
+              cinema:aboutGenre "A horror film is one that seeks to elicit fear or disgust in its audience for entertainment purposes.[1] Horror films additionally aim to evoke viewers' nightmares, revulsions and terror of the unknown or the macabre." ;
+              rdfs:label "Horror" .
+
+
+###  http://teochris.local/cinema#Hot_Fuzz
+cinema:Hot_Fuzz rdf:type owl:NamedIndividual ,
+                         cinema:Movie ;
+                cinema:belongsToGenre cinema:Comedy ;
+                cinema:producedBy cinema:UniversalPictures ;
+                cinema:duration 121 ;
+                cinema:imdbId "tt0425112" ;
+                cinema:releaseYear 2007 ;
+                cinema:movieName "Hot Fuzz" ;
+                rdfs:label "Hot Fuzz" .
+
+
+###  http://teochris.local/cinema#Hugo_Weaving
+cinema:Hugo_Weaving rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:actedIn cinema:The_Matrix ;
+                    cinema:dateOfBirth "1960-04-04"^^xsd:date ;
+                    cinema:firstName "Hugo" ;
+                    cinema:isAlive "true"^^xsd:boolean ;
+                    cinema:lastName "Weaving" ;
+                    rdfs:label "Hugo Weaving" .
+
+
+###  http://teochris.local/cinema#Inglourious_Basterds
+cinema:Inglourious_Basterds rdf:type owl:NamedIndividual ,
+                                     cinema:Movie ;
+                            cinema:belongsToGenre cinema:Adventure ;
+                            cinema:producedBy cinema:UniversalPictures ;
+                            cinema:duration 153 ;
+                            cinema:imdbId "tt0361748" ;
+                            cinema:releaseYear 2009 ;
+                            cinema:movieName "Inglourious Basterds" ;
+                            rdfs:label "Inglourious Basterds" .
+
+
+###  http://teochris.local/cinema#Jack_Nicholson
+cinema:Jack_Nicholson rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:personHasAward cinema:BestActorOscar ,
+                                            cinema:BestActorinaMotionPictureDrama ,
+                                            cinema:BestActorinaMotionPictureMusicalorComedy ,
+                                            cinema:BestSupportingActorMotionPicture ,
+                                            cinema:BestSupportingActorOscar ;
+                      cinema:starredIn cinema:The_Shining ;
+                      cinema:dateOfBirth "1937-04-22"^^xsd:date ;
+                      cinema:firstName "Jack" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Nicholson" ;
+                      rdfs:label "Jack Nicholson" .
+
+
+###  http://teochris.local/cinema#James_Caan
+cinema:James_Caan rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:actedIn cinema:The_Godfather ;
+                  cinema:firstName "James" ;
+                  cinema:isAlive "true"^^xsd:boolean ;
+                  cinema:lastName "Caan" ;
+                  rdfs:label "James Caan" .
+
+
+###  http://teochris.local/cinema#Janet_Leigh
+cinema:Janet_Leigh rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:actedIn cinema:Psycho ;
+                   cinema:personHasAward cinema:BestSupportingActressMotionPicture ;
+                   cinema:dateOfBirth "1927-07-06"^^xsd:date ;
+                   cinema:dateofDeath "2004-10-03"^^xsd:date ;
+                   cinema:firstName "Janet" ;
+                   cinema:isAlive "false"^^xsd:boolean ;
+                   cinema:lastName "Leigh" ;
+                   rdfs:label "Janet Leigh" .
+
+
+###  http://teochris.local/cinema#Jared_Leto
+cinema:Jared_Leto rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:actedIn cinema:American_Psycho ,
+                                 cinema:Fight_Club ;
+                  cinema:personHasAward cinema:BestSupportingActorOscar ;
+                  cinema:dateOfBirth "1971-12-26"^^xsd:date ;
+                  cinema:firstName "Jared" ;
+                  cinema:isAlive "true"^^xsd:boolean ;
+                  cinema:lastName "Leto" ;
+                  rdfs:label "Jared Leto" .
+
+
+###  http://teochris.local/cinema#Jason_Statham
+cinema:Jason_Statham rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:actedIn cinema:Lock_Stock_And_Two_Smoking_Barrels ;
+                     cinema:starredIn cinema:Snatch ;
+                     cinema:dateOfBirth "1967-07-26"^^xsd:date ;
+                     cinema:firstName "Jason" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Statham" ;
+                     rdfs:label "Jason Statham" .
+
+
+###  http://teochris.local/cinema#Jim_Uhls
+cinema:Jim_Uhls rdf:type owl:NamedIndividual ,
+                         cinema:Person ;
+                cinema:wrote cinema:Fight_Club ;
+                cinema:dateOfBirth "1957-03-25"^^xsd:date ;
+                cinema:firstName "Jim" ;
+                cinema:isAlive "true"^^xsd:boolean ;
+                cinema:lastName "Uhls" ;
+                rdfs:label "Jim Uhls" .
+
+
+###  http://teochris.local/cinema#Jodie_Foster
+cinema:Jodie_Foster rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:actedIn cinema:Taxi_Driver ;
+                    cinema:personHasAward cinema:BestActressOscar ;
+                    cinema:dateOfBirth "1962-11-19"^^xsd:date ;
+                    cinema:firstName "Jodie" ;
+                    cinema:isAlive "true"^^xsd:boolean ;
+                    cinema:lastName "Foster" ;
+                    rdfs:label "Jodie Foster" .
+
+
+###  http://teochris.local/cinema#John_Cleese
+cinema:John_Cleese rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:actedIn cinema:Monty_Python_and_the_Holy_Grail ;
+                   cinema:wrote cinema:Monty_Python_and_the_Holy_Grail ;
+                   cinema:dateOfBirth "1939-10-27"^^xsd:date ;
+                   cinema:firstName "John" ;
+                   cinema:isAlive "true"^^xsd:boolean ;
+                   cinema:lastName "Cleese" ;
+                   rdfs:label "John Cleese" .
+
+
+###  http://teochris.local/cinema#Jonathan_Pryce
+cinema:Jonathan_Pryce rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:starredIn cinema:Brazil ;
+                      cinema:dateOfBirth "1947-06-01"^^xsd:date ;
+                      cinema:firstName "Jonathan" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Pryce" ;
+                      rdfs:label "Jonathan Pryce" .
+
+
+###  http://teochris.local/cinema#Joseph_Stefano
+cinema:Joseph_Stefano rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:wrote cinema:Psycho ;
+                      cinema:dateOfBirth "1922-05-05"^^xsd:date ;
+                      cinema:dateofDeath "2006-08-25"^^xsd:date ;
+                      cinema:firstName "Joseph" ;
+                      cinema:isAlive "false"^^xsd:boolean ;
+                      cinema:lastName "Stefano" ;
+                      rdfs:label "Joseph Stefano" .
+
+
+###  http://teochris.local/cinema#Keanu_Reeves
+cinema:Keanu_Reeves rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:starredIn cinema:The_Matrix ;
+                    cinema:dateOfBirth "1964-09-02"^^xsd:date ;
+                    cinema:firstName "Keanu" ;
+                    cinema:isAlive "true"^^xsd:boolean ;
+                    cinema:lastName "Reeves" ;
+                    rdfs:label "Keanu Reeves" .
+
+
+###  http://teochris.local/cinema#Kevin_Spacey
+cinema:Kevin_Spacey rdf:type owl:NamedIndividual ,
+                             cinema:Person ;
+                    cinema:actedIn cinema:Seven ;
+                    cinema:personHasAward cinema:BestActorOscar ,
+                                          cinema:BestSupportingActorOscar ;
+                    cinema:dateOfBirth "1959-07-26"^^xsd:date ;
+                    cinema:firstName "Kevin" ;
+                    cinema:isAlive "true"^^xsd:boolean ;
+                    cinema:lastName "Spacey" ;
+                    rdfs:label "Kevin Spacey" .
+
+
+###  http://teochris.local/cinema#Lana_Wachowski
+cinema:Lana_Wachowski rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:directed cinema:The_Matrix ;
+                      cinema:wrote cinema:The_Matrix ;
+                      cinema:dateOfBirth "1965-06-21"^^xsd:date ;
+                      cinema:firstName "Lana" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Wachowski" ;
+                      rdfs:label "Lana Wachowski" .
+
+
+###  http://teochris.local/cinema#Laurence_Fishburne
+cinema:Laurence_Fishburne rdf:type owl:NamedIndividual ,
+                                   cinema:Person ;
+                          cinema:actedIn cinema:The_Matrix ;
+                          cinema:dateOfBirth "1961-07-30"^^xsd:date ;
+                          cinema:firstName "Laurence" ;
+                          cinema:isAlive "true"^^xsd:boolean ;
+                          cinema:lastName "Fishburne" ;
+                          rdfs:label "Laurence Fishburne" .
+
+
+###  http://teochris.local/cinema#Lilly_Wachowski
+cinema:Lilly_Wachowski rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:directed cinema:The_Matrix ;
+                       cinema:wrote cinema:The_Matrix ;
+                       cinema:dateOfBirth "1967-12-29"^^xsd:date ;
+                       cinema:firstName "Lilly" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "Wachowski" ;
+                       rdfs:label "Lilly Wachowski" .
+
+
+###  http://teochris.local/cinema#Lionsgate
+cinema:Lionsgate rdf:type owl:NamedIndividual ,
+                          cinema:Company ;
+                 cinema:hasSubsidiary cinema:Lionsgate_Films .
+
+
+###  http://teochris.local/cinema#Lionsgate_Films
+cinema:Lionsgate_Films rdf:type owl:NamedIndividual ,
+                                cinema:ProductionCompany ;
+                       cinema:hasSubsidiary cinema:SummitEntertainment .
+
+
+###  http://teochris.local/cinema#Lock_Stock_And_Two_Smoking_Barrels
+cinema:Lock_Stock_And_Two_Smoking_Barrels rdf:type owl:NamedIndividual ,
+                                                   cinema:Movie ;
+                                          cinema:belongsToGenre cinema:Action ,
+                                                                cinema:Comedy ;
+                                          cinema:producedBy cinema:SummitEntertainment ;
+                                          cinema:duration 107 ;
+                                          cinema:imdbId "tt0120735" ;
+                                          cinema:movieName "Lock Stock And Two Smoking Barrels" .
+
+
+###  http://teochris.local/cinema#Lucasfilms_Ltd
+cinema:Lucasfilms_Ltd rdf:type owl:NamedIndividual ,
+                               cinema:ProductionCompany ;
+                      rdfs:label "LucasFilms Ltd." .
+
+
+###  http://teochris.local/cinema#Mario_Puzo
+cinema:Mario_Puzo rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:personHasAward cinema:BestScreenplayMotionPicture ,
+                                        cinema:BestWriterOscarPrev ;
+                  cinema:wrote cinema:The_Godfather ,
+                               cinema:The_Godfather_Part_II ,
+                               cinema:The_Godfather_Part_III ;
+                  cinema:dateOfBirth "1920-10-15"^^xsd:date ;
+                  cinema:dateofDeath "1999-07-02"^^xsd:date ;
+                  cinema:firstName "Mario" ;
+                  cinema:isAlive "false"^^xsd:boolean ;
+                  cinema:lastName "Puzo" ;
+                  rdfs:label "Mario Puzo" .
+
+
+###  http://teochris.local/cinema#Marlon_Brando
+cinema:Marlon_Brando rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:personHasAward cinema:BestActorOscar ;
+                     cinema:starredIn cinema:The_Godfather ;
+                     cinema:dateOfBirth "1924-04-03"^^xsd:date ;
+                     cinema:dateofDeath "2004-07-01"^^xsd:date ;
+                     cinema:firstName "Marlon" ;
+                     cinema:isAlive "false"^^xsd:boolean ;
+                     cinema:lastName "Brando" ;
+                     rdfs:label "Marlon Brando" .
+
+
+###  http://teochris.local/cinema#Martin_Scorsese
+cinema:Martin_Scorsese rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:actedIn cinema:Taxi_Driver ;
+                       cinema:directed cinema:Taxi_Driver ;
+                       cinema:personHasAward cinema:BestDirectorMotionPicture ,
+                                             cinema:BestDirectorOscar ;
+                       cinema:dateOfBirth "1942-11-17"^^xsd:date ;
+                       cinema:firstName "Martin" ;
+                       cinema:isAlive "true"^^xsd:boolean ;
+                       cinema:lastName "Scorsese" ;
+                       rdfs:label "Martin Scorsese" .
+
+
+###  http://teochris.local/cinema#Mary_Harron
+cinema:Mary_Harron rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:directed cinema:American_Psycho ;
+                   cinema:wrote cinema:American_Psycho ;
+                   cinema:dateOfBirth "1953-01-12"^^xsd:date ;
+                   cinema:firstName "Mary" ;
+                   cinema:isAlive "true"^^xsd:boolean ;
+                   cinema:lastName "Harron" ;
+                   rdfs:label "Mary Harron" .
+
+
+###  http://teochris.local/cinema#Michael_Palin
+cinema:Michael_Palin rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:actedIn cinema:Brazil ,
+                                    cinema:Monty_Python_and_the_Holy_Grail ;
+                     cinema:wrote cinema:Monty_Python_and_the_Holy_Grail ;
+                     cinema:dateOfBirth "1943-05-05"^^xsd:date ;
+                     cinema:firstName "Michael" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Palin" ;
+                     rdfs:label "Michael Palin" .
+
+
+###  http://teochris.local/cinema#Monty_Python_and_the_Holy_Grail
+cinema:Monty_Python_and_the_Holy_Grail rdf:type owl:NamedIndividual ,
+                                                cinema:Movie ;
+                                       cinema:belongsToGenre cinema:Comedy ;
+                                       cinema:duration 91 ;
+                                       cinema:imdbId "tt0071853" ;
+                                       cinema:releaseYear 1975 ;
+                                       cinema:movieName "Monty Python and the Holy Grail" ;
+                                       rdfs:label "Monty Python and the Holy Grail" .
+
+
+###  http://teochris.local/cinema#Morgan_Freeman
+cinema:Morgan_Freeman rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:personHasAward cinema:BestActorinaMotionPictureMusicalorComedy ,
+                                            cinema:BestSupportingActorOscar ;
+                      cinema:starredIn cinema:Seven ;
+                      cinema:dateOfBirth "1937-06-01"^^xsd:date ;
+                      cinema:firstName "Morgan" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Freeman" ;
+                      rdfs:label "Morgan Freeman" .
+
+
+###  http://teochris.local/cinema#Mystery
+cinema:Mystery rdf:type owl:NamedIndividual ,
+                        cinema:Genre ;
+               cinema:aboutGenre "Mystery is a fiction genre where the nature of an event, usually a murder or other crime, remains mysterious until the end of the story. Often within a closed circle of suspects, each suspect is usually provided with a credible motive and a reasonable opportunity for committing the crime." ;
+               rdfs:label "Mystery" .
+
+
+###  http://teochris.local/cinema#NBCUniversal
+cinema:NBCUniversal rdf:type owl:NamedIndividual ,
+                             cinema:Company ;
+                    cinema:hasSubsidiary cinema:UniversalPictures .
+
+
+###  http://teochris.local/cinema#NewLineCinema
+cinema:NewLineCinema rdf:type owl:NamedIndividual ,
+                              cinema:ProductionCompany .
+
+
+###  http://teochris.local/cinema#Nick_Frost
+cinema:Nick_Frost rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:starredIn cinema:Hot_Fuzz ;
+                  cinema:dateOfBirth "1972-03-28"^^xsd:date ;
+                  cinema:firstName "Nick" ;
+                  cinema:isAlive "true"^^xsd:boolean ;
+                  cinema:lastName "Frost" ;
+                  rdfs:label "Nick Frost" .
+
+
+###  http://teochris.local/cinema#ParamountPictures
+cinema:ParamountPictures rdf:type owl:NamedIndividual ,
+                                  cinema:ProductionCompany .
+
+
+###  http://teochris.local/cinema#Paul_Schrader
+cinema:Paul_Schrader rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:wrote cinema:Taxi_Driver ;
+                     cinema:dateOfBirth "1946-07-22"^^xsd:date ;
+                     cinema:firstName "Paul" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Schrader" ;
+                     rdfs:label "Paul Schrader" .
+
+
+###  http://teochris.local/cinema#Peter_Sellers
+cinema:Peter_Sellers rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:personHasAward cinema:BestActorinaMotionPictureMusicalorComedy ;
+                     cinema:starredIn cinema:Dr._Strangelove ;
+                     cinema:dateOfBirth "1925-09-08"^^xsd:date ;
+                     cinema:dateofDeath "1980-07-24"^^xsd:date ;
+                     cinema:firstName "Peter" ;
+                     cinema:isAlive "false"^^xsd:boolean ;
+                     cinema:lastName "Sellers" ;
+                     rdfs:label "Peter Sellers" .
+
+
+###  http://teochris.local/cinema#Pixar
+cinema:Pixar rdf:type owl:NamedIndividual ,
+                      cinema:AnimatedMovieProductionCompany ;
+             rdfs:label "Pixar Studios" .
+
+
+###  http://teochris.local/cinema#Psycho
+cinema:Psycho rdf:type owl:NamedIndividual ,
+                       cinema:Movie ;
+              cinema:belongsToGenre cinema:Horror ;
+              cinema:duration 109 ;
+              cinema:imdbId "tt0054215" ;
+              cinema:releaseYear 1960 ;
+              cinema:movieName "Psycho" ;
+              rdfs:label "Psycho" .
+
+
+###  http://teochris.local/cinema#Quentin_Tarantino
+cinema:Quentin_Tarantino rdf:type owl:NamedIndividual ,
+                                  cinema:Person ;
+                         cinema:directed cinema:Inglourious_Basterds ;
+                         cinema:personHasAward cinema:BestWriterOscarOriginal ;
+                         cinema:wrote cinema:Inglourious_Basterds ;
+                         cinema:dateOfBirth "1963-03-27"^^xsd:date ;
+                         cinema:firstName "Quentin" ;
+                         cinema:isAlive "true"^^xsd:boolean ;
+                         cinema:lastName "Tarantino" ;
+                         rdfs:label "Quentin Tarantino" .
+
+
+###  http://teochris.local/cinema#RegencyEnterprises
+cinema:RegencyEnterprises rdf:type owl:NamedIndividual ,
+                                   cinema:Company .
+
+
+###  http://teochris.local/cinema#Robert_De_Niro
+cinema:Robert_De_Niro rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:actedIn cinema:Brazil ,
+                                     cinema:The_Godfather_Part_II ;
+                      cinema:personHasAward cinema:BestActorOscar ,
+                                            cinema:BestSupportingActorOscar ;
+                      cinema:starredIn cinema:Taxi_Driver ;
+                      cinema:dateOfBirth "1943-08-17"^^xsd:date ;
+                      cinema:firstName "Robert" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "De Niro" ;
+                      rdfs:label "Robin De Niro" .
+
+
+###  http://teochris.local/cinema#SciFi
+cinema:SciFi rdf:type owl:NamedIndividual ,
+                      cinema:Genre ;
+             cinema:aboutGenre "Science fiction is a genre of speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life." ;
+             rdfs:label "SciFi" .
+
+
+###  http://teochris.local/cinema#Seven
+cinema:Seven rdf:type owl:NamedIndividual ,
+                      cinema:Movie ;
+             cinema:belongsToGenre cinema:Mystery ;
+             cinema:producedBy cinema:NewLineCinema ;
+             cinema:duration 127 ;
+             cinema:imdbId "tt0114369" ;
+             cinema:releaseYear 1995 ;
+             cinema:movieName "Se7en" .
+
+
+###  http://teochris.local/cinema#Shelley_Duvall
+cinema:Shelley_Duvall rdf:type owl:NamedIndividual ,
+                               cinema:Person ;
+                      cinema:actedIn cinema:The_Shining ;
+                      cinema:dateOfBirth "1949-07-07"^^xsd:date ;
+                      cinema:firstName "Shelley" ;
+                      cinema:isAlive "true"^^xsd:boolean ;
+                      cinema:lastName "Duvall" ;
+                      rdfs:label "Shelley Duvall" .
+
+
+###  http://teochris.local/cinema#Simon_Pegg
+cinema:Simon_Pegg rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:starredIn cinema:Hot_Fuzz ;
+                  cinema:wrote cinema:Hot_Fuzz ;
+                  cinema:dateOfBirth "1970-02-14"^^xsd:date ;
+                  cinema:firstName "Simon" ;
+                  cinema:isAlive "true"^^xsd:boolean ;
+                  cinema:lastName "Pegg" ;
+                  rdfs:label "Simon Pegg" .
+
+
+###  http://teochris.local/cinema#Snatch
+cinema:Snatch rdf:type owl:NamedIndividual ,
+                       cinema:Movie ;
+              cinema:belongsToGenre cinema:Comedy ;
+              cinema:producedBy cinema:ColumbiaPictures ;
+              cinema:duration 104 ;
+              cinema:imdbId "tt0208092" ;
+              cinema:releaseYear 2000 ;
+              cinema:movieName "Snatch" ;
+              rdfs:label "Snatch" .
+
+
+###  http://teochris.local/cinema#Sony
+cinema:Sony rdf:type owl:NamedIndividual ,
+                     cinema:Company ;
+            cinema:hasSubsidiary cinema:SonyAmerica .
+
+
+###  http://teochris.local/cinema#SonyAmerica
+cinema:SonyAmerica rdf:type owl:NamedIndividual ,
+                            cinema:Company ;
+                   cinema:hasSubsidiary cinema:SonyEntertainment ;
+                   rdfs:label "Sony Corporation of America" .
+
+
+###  http://teochris.local/cinema#SonyEntertainment
+cinema:SonyEntertainment rdf:type owl:NamedIndividual ,
+                                  cinema:Company ;
+                         cinema:hasSubsidiary cinema:SonyPictures .
+
+
+###  http://teochris.local/cinema#SonyPictures
+cinema:SonyPictures rdf:type owl:NamedIndividual ,
+                             cinema:Company ;
+                    cinema:hasSubsidiary cinema:SonyPicturesMotionPictureGroup .
+
+
+###  http://teochris.local/cinema#SonyPicturesMotionPictureGroup
+cinema:SonyPicturesMotionPictureGroup rdf:type owl:NamedIndividual ,
+                                               cinema:ProductionCompany ;
+                                      cinema:hasSubsidiary cinema:ColumbiaPictures .
+
+
+###  http://teochris.local/cinema#Stanley_Kubrick
+cinema:Stanley_Kubrick rdf:type owl:NamedIndividual ,
+                                cinema:Person ;
+                       cinema:directed cinema:Dr._Strangelove ,
+                                       cinema:The_Shining ;
+                       cinema:wrote cinema:Dr._Strangelove ,
+                                    cinema:The_Shining ;
+                       cinema:dateOfBirth "1928-07-26"^^xsd:date ;
+                       cinema:dateofDeath "1999-03-07"^^xsd:date ;
+                       cinema:firstName "Stanley" ;
+                       cinema:isAlive "false"^^xsd:boolean ;
+                       cinema:lastName "Kubrick" ;
+                       rdfs:label "Stanley Kubrick" .
+
+
+###  http://teochris.local/cinema#StarWarsEpisodeIV
+cinema:StarWarsEpisodeIV rdf:type owl:NamedIndividual ,
+                                  cinema:Movie ;
+                         cinema:movieHasAward cinema:BestEffectsOscar ;
+                         cinema:producedBy cinema:Lucasfilms_Ltd ;
+                         cinema:duration 121 ;
+                         cinema:releaseYear 1977 ;
+                         cinema:movieName "Star Wars: Episode IV - A New Hope" .
+
+
+###  http://teochris.local/cinema#SummitEntertainment
+cinema:SummitEntertainment rdf:type owl:NamedIndividual ,
+                                    cinema:Company .
+
+
+###  http://teochris.local/cinema#Taxi_Driver
+cinema:Taxi_Driver rdf:type owl:NamedIndividual ,
+                            cinema:Movie ;
+                   cinema:belongsToGenre cinema:Drama ;
+                   cinema:producedBy cinema:ColumbiaPictures ;
+                   cinema:duration 104 ;
+                   cinema:imdbId "tt0075314" ;
+                   cinema:releaseYear 1976 ;
+                   cinema:movieName "Taxi Driver" ;
+                   rdfs:label "Taxi Driver" .
+
+
+###  http://teochris.local/cinema#Terry_Gilliam
+cinema:Terry_Gilliam rdf:type owl:NamedIndividual ,
+                              cinema:Person ;
+                     cinema:actedIn cinema:Brazil ,
+                                    cinema:Monty_Python_and_the_Holy_Grail ;
+                     cinema:directed cinema:Brazil ,
+                                     cinema:Monty_Python_and_the_Holy_Grail ;
+                     cinema:wrote cinema:Brazil ,
+                                  cinema:Monty_Python_and_the_Holy_Grail ;
+                     cinema:dateOfBirth "1940-11-22"^^xsd:date ;
+                     cinema:firstName "Terry" ;
+                     cinema:isAlive "true"^^xsd:boolean ;
+                     cinema:lastName "Giliam" ;
+                     rdfs:label "Terry Gilliam" .
+
+
+###  http://teochris.local/cinema#Terry_Jones
+cinema:Terry_Jones rdf:type owl:NamedIndividual ,
+                            cinema:Person ;
+                   cinema:actedIn cinema:Monty_Python_and_the_Holy_Grail ;
+                   cinema:directed cinema:Monty_Python_and_the_Holy_Grail ;
+                   cinema:wrote cinema:Monty_Python_and_the_Holy_Grail ;
+                   cinema:dateOfBirth "1942-02-01"^^xsd:date ;
+                   cinema:dateofDeath "2020-01-21"^^xsd:date ;
+                   cinema:firstName "Terry" ;
+                   cinema:isAlive "false"^^xsd:boolean ;
+                   cinema:lastName "Jones" ;
+                   rdfs:label "Terry Jones" .
+
+
+###  http://teochris.local/cinema#TheGodfatherSeries
+cinema:TheGodfatherSeries rdf:type owl:NamedIndividual ,
+                                   cinema:MovieSeries ;
+                          cinema:hasMovie cinema:The_Godfather ,
+                                          cinema:The_Godfather_Part_II ,
+                                          cinema:The_Godfather_Part_III ;
+                          cinema:seriesName "The Godfather Trilogy" ;
+                          rdfs:label "The Godfather Series" .
+
+
+###  http://teochris.local/cinema#The_Godfather
+cinema:The_Godfather rdf:type owl:NamedIndividual ,
+                              cinema:Movie ;
+                     cinema:belongsToGenre cinema:Drama ;
+                     cinema:hasSequel cinema:The_Godfather_Part_II ;
+                     cinema:movieHasAward cinema:BestMotionPictureDrama ,
+                                          cinema:BestPictureOscar ;
+                     cinema:producedBy cinema:ParamountPictures ;
+                     cinema:duration 175 ;
+                     cinema:imdbId "tt0068646" ;
+                     cinema:releaseYear 1972 ;
+                     cinema:movieName "The Godfather" ;
+                     rdfs:label "The Godfather" .
+
+
+###  http://teochris.local/cinema#The_Godfather_Part_II
+cinema:The_Godfather_Part_II rdf:type owl:NamedIndividual ,
+                                      cinema:Movie ;
+                             cinema:belongsToGenre cinema:Drama ;
+                             cinema:hasSequel cinema:The_Godfather_Part_III ;
+                             cinema:movieHasAward cinema:BestPictureOscar ;
+                             cinema:producedBy cinema:ParamountPictures ;
+                             cinema:duration 202 ;
+                             cinema:imdbId "tt0071562" ;
+                             cinema:releaseYear 1974 ;
+                             cinema:movieName "The Godfather Part II" ;
+                             rdfs:label "The Godfather Part II" .
+
+
+###  http://teochris.local/cinema#The_Godfather_Part_III
+cinema:The_Godfather_Part_III rdf:type owl:NamedIndividual ,
+                                       cinema:Movie ;
+                              cinema:belongsToGenre cinema:Drama ;
+                              cinema:producedBy cinema:ParamountPictures ;
+                              cinema:duration 162 ;
+                              cinema:imdbId "tt0099674" ;
+                              cinema:releaseYear 1990 ;
+                              cinema:movieName "The Godfather Part III" ;
+                              rdfs:label "The Godfather Part III" .
+
+
+###  http://teochris.local/cinema#The_Matrix
+cinema:The_Matrix rdf:type owl:NamedIndividual ,
+                           cinema:Movie ;
+                  cinema:belongsToGenre cinema:SciFi ;
+                  cinema:producedBy cinema:WarnerBrosPictures ;
+                  cinema:duration 136 ;
+                  cinema:imdbId "tt0133093" ;
+                  cinema:releaseYear 1999 ;
+                  cinema:movieName "The Matrix" ;
+                  rdfs:label "The Matrix" .
+
+
+###  http://teochris.local/cinema#The_Shining
+cinema:The_Shining rdf:type owl:NamedIndividual ,
+                            cinema:Movie ;
+                   cinema:belongsToGenre cinema:Horror ;
+                   cinema:producedBy cinema:WarnerBrosPictures ;
+                   cinema:duration 146 ;
+                   cinema:imdbId "tt0081505" ;
+                   cinema:releaseYear 1980 ;
+                   cinema:movieName "The Shining" ;
+                   rdfs:label "The Shining" .
+
+
+###  http://teochris.local/cinema#Tom_Hanks
+cinema:Tom_Hanks rdf:type owl:NamedIndividual ,
+                          cinema:Person ;
+                 cinema:personHasAward cinema:BestActorOscar ,
+                                       cinema:BestActorinaMotionPictureDrama ,
+                                       cinema:BestActorinaMotionPictureMusicalorComedy ;
+                 cinema:starredIn cinema:Forrest_Gump ;
+                 cinema:dateOfBirth "1956-07-09"^^xsd:date ;
+                 cinema:firstName "Tom" ;
+                 cinema:isAlive "true"^^xsd:boolean ;
+                 cinema:lastName "Hanks" ;
+                 rdfs:label "Tom Hanks" .
+
+
+###  http://teochris.local/cinema#UniversalPictures
+cinema:UniversalPictures rdf:type owl:NamedIndividual ,
+                                  cinema:ProductionCompany ;
+                         rdfs:label "Universal Pictures" .
+
+
+###  http://teochris.local/cinema#Vera_Miles
+cinema:Vera_Miles rdf:type owl:NamedIndividual ,
+                           cinema:Person ;
+                  cinema:actedIn cinema:Psycho ;
+                  cinema:dateOfBirth "1929-08-23"^^xsd:date ;
+                  cinema:firstName "Vera" ;
+                  cinema:isAlive "true"^^xsd:boolean ;
+                  cinema:lastName "Miles" ;
+                  rdfs:label "Vera Miles" .
+
+
+###  http://teochris.local/cinema#ViacomCBS
+cinema:ViacomCBS rdf:type owl:NamedIndividual ,
+                          cinema:Company ;
+                 cinema:hasSubsidiary cinema:ParamountPictures .
+
+
+###  http://teochris.local/cinema#WaltDisneyCompany
+cinema:WaltDisneyCompany rdf:type owl:NamedIndividual ,
+                                  cinema:Company ;
+                         cinema:hasSubsidiary cinema:WaltDisneyStudios ;
+                         rdfs:label "Walt Disney Company" .
+
+
+###  http://teochris.local/cinema#WaltDisneyStudios
+cinema:WaltDisneyStudios rdf:type owl:NamedIndividual ,
+                                  cinema:ProductionCompany ;
+                         cinema:hasSubsidiary cinema:Fox2000 ,
+                                              cinema:Lucasfilms_Ltd ,
+                                              <http://teochris.local/cinema#20CenturyStudios> ;
+                         rdfs:label "Walt Disney Studios" .
+
+
+###  http://teochris.local/cinema#WarnerBros
+cinema:WarnerBros rdf:type owl:NamedIndividual ,
+                           cinema:Company ;
+                  cinema:hasSubsidiary cinema:WarnerBrosPictures ;
+                  rdfs:label "Warner Bros." .
+
+
+###  http://teochris.local/cinema#WarnerBrosPictures
+cinema:WarnerBrosPictures rdf:type owl:NamedIndividual ,
+                                   cinema:ProductionCompany ;
+                          cinema:hasSubsidiary cinema:NewLineCinema ;
+                          rdfs:label "Warner Bros. Pictures" .
+
+
+###  http://teochris.local/cinema#WarnerMedia
+cinema:WarnerMedia rdf:type owl:NamedIndividual ,
+                            cinema:Company ;
+                   cinema:hasSubsidiary cinema:WarnerBrosPictures .
+
+
+###  http://teochris.local/cinema#20CenturyStudios
+<http://teochris.local/cinema#20CenturyStudios> rdf:type owl:NamedIndividual ,
+                                                         cinema:Company ;
+                                                cinema:hasSubsidiary cinema:RegencyEnterprises ;
+                                                rdfs:label "20th Century Studios" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+cinema:movieName rdfs:label "movie name" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
